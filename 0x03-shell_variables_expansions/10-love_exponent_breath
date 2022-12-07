@@ -1,2 +1,2 @@
 #!/bin/bin
-echo $(($BREAK**$LOVE))
+echo $((BREATH**LOVE))
