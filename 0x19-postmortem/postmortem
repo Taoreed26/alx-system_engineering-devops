@@ -1,0 +1,24 @@
+POSTMORTEM
+It is common to experience problems with any area of your regular jobs. In software, problems including bugs, incorrect compilation, design architecture, and hardware malfunctions might occur. I'll take you through some problems I faced with my SSH and web server today, 8/23/2023, to share my own personal experience. In order to prevent this problem in the future, I intended to chronicle it.
+ISSUE SYNOPSIS
+Timeframe of the Outage:
+•	Date: 2023-08-18
+•	Time of Start: T08:19:34+0100
+•	End Time: T17:21:30+0100
+The Impact
+I was unable to SSH into my web server. I keep getting this error message from it.
+The Root Cause
+The main reason was that the server I intended to enter didn't have my SSH public key.
+TIMELINE
+08:19: I attempted to connect to the web server at
+08:20: The error message "Connection failed" appeared on the screen.
+08:45: I looked up solutions to the problem online.
+09:04: I had to use the SSH private key to log into the web server.
+09:16: I discovered that the authorized keys file didn't contain the correct public key.
+09:27: I entered the public key and quit the file to retest it.
+09:33: My attempt to log in again was successful.
+CAUSE AND ITS RESOLUTION
+The organization provided us with a web server to operate on. I have the one i use, and we had to make a ssh key to present to our technical mentor so he could grant us access to the web server that would be made available to us. After receiving mine, I executed some scripts that undoubtedly changed the web server's ssh configuration.
+The next day, when i attempted to logon to the server out of ignorance, i received the same notice. After reading articles that address issues and testing. I found that I could not log in without the private key, therefore I had a problem. When I was able to access the web server, I made the decision to look at the list of allowed keys. My system's public key was nowhere to be found. In order to access the web server without needing the private key, I added it to the list.
+PREVENTIVE ACTIONS
+I'll ensure to exercise caution whenevever i am executing scripts on the server and also ensure that they are not interfering with any other server configurations.
